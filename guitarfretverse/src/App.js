@@ -1,13 +1,10 @@
 import './App.css';
+import Guitar from './guitar';
 
 function App() {
   return (
     <div className="App">
-      <div className="guitar">
-        <div className="fretboard">
-
-        </div>
-      </div>
+      <Guitar></Guitar>
     </div>
   );
 }

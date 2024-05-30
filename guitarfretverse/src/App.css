@@ -1,16 +1,84 @@
-.App {
-  text-align: center;
+:root {
+  --guitar-bg-color: #ffffff;
+  --guitar-fret-color: #774300;
+  --gutiar-nut-color: #3b3b3b;
+  --fret-pin-color: #999999;
+  --guitar-string-color: #696969;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100vh;
 }
 
 .guitar {
-  display: flex;
-  height: 12%;
+  height: 30%;
   width: 100%;
-  background-color: rgb(134, 72, 0);
+  background-color: var(--guitar-bg-color);
+  position: relative; /* Ensure relative positioning */
+}
+
+.fretboard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 80%;
+  width: 100%;
+  background-color: var(--guitar-fret-color);
+}
+
+.stringContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+}
+
+.string {
+  width: 100%;
+  height: 3px;
+  background-color: var(--guitar-string-color);
+  position: relative;
+  z-index: 1;
+  margin-top: 0.7rem;
+  margin-bottom: 1.7rem;
+}
+
+.fret {
+  width: 8%;
+  height: 100%;
+  background-color: var(--guitar-fret-color);
+  border-right: 0.4rem solid var(--fret-pin-color);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#fret0 {
+  width: 4%;
+  background-color: var(--gutiar-nut-color);
+}
+
+.fretdot {
+  width: 20px; /* Adjust size as needed */
+  height: 20px; /* Adjust size as needed */
+  border-radius: 50%;
+  background-color: white; /* Adjust color as needed */
+}
+
+#fretdotdbl {
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
 }
