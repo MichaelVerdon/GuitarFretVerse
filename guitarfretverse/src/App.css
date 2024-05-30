@@ -1,0 +1,16 @@
+.App {
+  text-align: center;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.guitar {
+  display: flex;
+  height: 12%;
+  width: 100%;
+  background-color: rgb(134, 72, 0);
+}
