@@ -1,10 +1,40 @@
 import React from 'react';
 import './App.css';
+import Note from './note.jsx';
+import GuitarData from './utils/guitarData.js';
 
 const Guitar = () => {
 
+    const testPattern = GuitarData.pentatonicBinary;
+    const allNotes = GuitarData.allGuitarNotes;
+
+    const preparePattern = () => {
+
+    }
+
     return(
         <div className="guitar">
+            <div className='notesContainer'>
+                {testPattern.map((item, index) => {
+                    if (index === 0) {
+                        return (
+                            <div key={index} className='notesNutContainer'>
+                                {allNotes[index].map((note, i) => (
+                                    <Note key={i} note={note} active={item[i]} />
+                                ))}
+                            </div>
+                        );
+                    } else {
+                        return (
+                            <div key={index} className='notesFretContainer'>
+                                {allNotes[index].map((note, i) => (
+                                    <Note key={i} note={note} active={item[i]} />
+                                ))}
+                            </div>
+                        );
+                    }
+                })}
+            </div>
             <div className='stringContainer'>
                 <div className='string' id='estring'></div>
                 <div className='string' id='astring'></div>

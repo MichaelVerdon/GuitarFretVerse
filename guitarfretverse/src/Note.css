@@ -1,0 +1,73 @@
+:root {
+    --e-note: #ff6f61;        /* Soft Red */
+    --f-note: #ffcc5c;        /* Light Orange */
+    --fsharp-note: #ffeead;   /* Pale Yellow */
+    --g-note: #88d8b0;        /* Soft Green */
+    --gsharp-note: #91a8d0;   /* Light Blue */
+    --a-note: #c5b3e7;        /* Light Purple */
+    --asharp-note: #d4a5a5;   /* Warm Beige */
+    --b-note: #ffb347;        /* Warm Orange */
+    --c-note: #c2b280;        /* Taupe */
+    --csharp-note: #c49a6c;   /* Soft Brown */
+    --d-note: #ff9e80;        /* Coral */
+    --dsharp-note: #ffab91;   /* Light Coral */
+
+        /* Ionian Mode */
+    --ionian: #ff6f61;        /* Soft Red */
+    
+    /* Dorian Mode */
+    --dorian: #6f9eaf;        /* Soft Teal */
+    
+    /* Phrygian Mode */
+    --phrygian: #d46a6a;      /* Red */
+    
+    /* Lydian Mode */
+    --lydian: #ffcc5c;        /* Light Orange */
+    
+    /* Mixolydian Mode */
+    --mixolydian: #a2d3a8;    /* Soft Green */
+    
+    /* Aeolian Mode */
+    --aeolian: #b39bc8;       /* Light Purple */
+    
+    /* Locrian Mode */
+    --locrian: #91a8d0;       /* Light Blue */
+  }
+
+/* E, F, F#, G, G#, A, A#, B, C, C#, D, D# */
+
+.noteDot {
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform .1s ease-in-out;
+    opacity: 0.75;
+}
+
+.noteDot:hover {
+    transform: scale(1.5);
+    opacity: 1;
+}
+
+.noteText {
+    color: white; /* or any other color you want */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8); /* adjust values as needed */
+    font-size: 1.35rem;
+  }
+
+#e { background-color: var(--e-note); }
+#f { background-color: var(--f-note); }
+#fsharp { background-color: var(--fsharp-note); }
+#g { background-color: var(--g-note); }
+#gsharp { background-color: var(--gsharp-note); }
+#a { background-color: var(--a-note); }
+#asharp { background-color: var(--asharp-note); }
+#b { background-color: var(--b-note); }
+#c { background-color: var(--c-note); }
+#csharp { background-color: var(--csharp-note); }
+#d { background-color: var(--d-note); }
+#dsharp { background-color: var(--dsharp-note); }
+
