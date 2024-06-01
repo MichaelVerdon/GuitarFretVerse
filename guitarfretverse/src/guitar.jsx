@@ -5,7 +5,7 @@ import GuitarData from './utils/guitarData.js';
 
 const Guitar = () => {
 
-    const testPattern = GuitarData.allNotesBinary;
+    const testPattern = GuitarData.pentatonicBinary;
     const allNotes = GuitarData.allGuitarNotes;
 
     const preparePattern = () => {
