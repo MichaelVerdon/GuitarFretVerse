@@ -1,18 +1,18 @@
 const GuitarData = {
     allGuitarNotes: [
-        ["e", "a", "d", "g", "b", "e"],
-        ["f", "asharp", "dsharp", "gsharp", "c", "f"],
-        ["fsharp", "b", "e", "asharp", "csharp", "fsharp"],
-        ["g", "c", "f", "a", "d", "g"],
-        ["gsharp", "csharp", "fsharp", "asharp", "dsharp", "gsharp"],
-        ["a", "d", "g", "b", "e", "a"],
-        ["asharp", "dsharp", "gsharp", "c", "f", "asharp"],
-        ["b", "e", "a", "csharp", "fsharp", "b"],
-        ["c", "f", "asharp", "d", "g", "c"],
-        ["csharp", "fsharp", "b", "dsharp", "gsharp", "csharp"],
-        ["d", "g", "c", "e", "a", "d"],
-        ["dsharp", "gsharp", "csharp", "f", "asharp", "dsharp"],
-        ["e", "a", "d", "g", "b", "e"]
+        ["e", "b", "g", "d", "a", "e"],
+        ["f", "c", "gsharp", "dsharp", "asharp", "f"],
+        ["fsharp", "csharp", "a", "e", "b", "fsharp"],
+        ["g", "d", "asharp", "f", "c", "g"],
+        ["gsharp", "dsharp", "b", "fsharp", "csharp", "gsharp"],
+        ["a", "e", "c", "g", "d", "a"],
+        ["asharp", "f", "csharp", "gsharp", "dsharp", "asharp"],
+        ["b", "fsharp", "d", "a", "e", "b"],
+        ["c", "g", "dsharp", "asharp", "f", "c"],
+        ["csharp", "gsharp", "e", "b", "fsharp", "csharp"],
+        ["d", "a", "f", "c", "g", "d"],
+        ["dsharp", "asharp", "fsharp", "csharp", "gsharp", "dsharp"],
+        ["e", "b", "g", "d", "a", "e"]
       ],
   
     allNotesBinary: [
