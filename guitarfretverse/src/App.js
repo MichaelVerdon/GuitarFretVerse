@@ -20,6 +20,8 @@ export const MenuContext = createContext({
 function App() {
 
   useEffect(() => {
+    console.log("useEffect Working")
+    console.log("Current Selection: " + selectOption)
     switch(selectOption){
       case "All Notes":
         keyMenu = false;
@@ -34,7 +36,7 @@ function App() {
         arpeggioMenu = false;
         scaleMenu = true;
     }
-  }, [MenuContext])
+  })
 
   let keyMenu = false;
   let arpeggioMenu = false;
@@ -47,20 +49,23 @@ function App() {
   
 
   return (
-    <div className="App">
-      <div className='appContainer'>
-        <div className='logoContainer'>
-          <img src={logo} className='logo'></img>
+    <MenuContext.Provider value={{ selectOption, selectKey, selectArpeggioType, selectScaleType, changeSelectOption, changeSelectKey, changeArpeggioOption, changeScaleOption}}>
+      <div className="App">
+        <div className='appContainer'>
+          <div className='logoContainer'>
+            <img src={logo} className='logo'></img>
+          </div>
+          <div className='menuContainer'>
+            <DropdownMenu menu={Titles.selectMenu} menuType={"selectOption"}></DropdownMenu>
+            {(selectOption !== "All Notes") ? <DropdownMenu menu={Titles.keyMenu} menuType={"Key"}></DropdownMenu> : <div/>}
+            {(selectOption === "Arpeggios") ? <DropdownMenu menu={Titles.arpeggioMenu} menuType={"Arpeggio"}></DropdownMenu> : <div/>}
+            {(selectOption === "Scales") ? <DropdownMenu menu={Titles.scaleMenu} menuType={"Scale"}></DropdownMenu> : <div/>}
+            <button className='applyButton'>Update Fretboard</button>
+          </div>
+          <Guitar></Guitar>
         </div>
-        <div className='menuContainer'>
-          <DropdownMenu menu={Titles.selectMenu} menuType={"selectOption"}></DropdownMenu>
-          {(selectOption !== "All Notes") ? <DropdownMenu menu={Titles.keyMenu} menuType={"keyOption"}></DropdownMenu> : <div/>}
-          {arpeggioMenu ? <DropdownMenu menu={Titles.arpeggioMenu} menuType={"Arpeggio"}></DropdownMenu> : <div/>}
-          {scaleMenu ? <DropdownMenu menu={Titles.scaleMenu} menuType={"Scale"}></DropdownMenu> : <div/>}
-        </div>
-        <Guitar></Guitar>
       </div>
-    </div>
+    </MenuContext.Provider>
   );
 }
 

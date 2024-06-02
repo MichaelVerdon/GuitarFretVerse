@@ -61,6 +61,21 @@ html {
   z-index: 2;
 }
 
+.applyButton {
+  background-color: #000281;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.applyButton:hover {
+  background-color: #0003ce;
+}
+
 .guitar {
   height: 30vh;
   width: 100%;

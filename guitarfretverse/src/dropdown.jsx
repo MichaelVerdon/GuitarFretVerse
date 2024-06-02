@@ -8,6 +8,7 @@ function DropdownMenu({ menu, menuType }) {
 
   const changeSelectedItem = (item) => {
     changeSelection(item);
+    console.log(selectedOption)
     switch (menuType) {
       case "selectOption":
         changeSelectOption(item);
