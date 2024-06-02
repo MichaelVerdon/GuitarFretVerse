@@ -3,15 +3,49 @@ import Guitar from './guitar';
 import DropdownMenu from './dropdown.jsx'
 import Titles from './utils/titles.js';
 import logo from './images/guitarfretverselogo.png';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, createContext } from 'react';
+
+export const MenuContext = createContext({
+  options: {
+    selectOption: null,
+    selectKey: null,
+    selectArpeggioType: null,
+    selectScaleType: null,
+  },
+  changeSelectOption: () => {},
+  changeSelectKey: () => {},
+  changeArpeggioOption: () => {},
+  changeScaleOption: () => {}
+});
+
 
 function App() {
 
-  const keyMenu = true;
-  const arpeggioMenu = true;
-  const scaleMenu = true;
+  useEffect(() => {
+    switch(selectOption){
+      case "All Notes":
+        keyMenu = false;
+        arpeggioMenu = false;
+        scaleMenu = false;
+      case "Arpeggio":
+        keyMenu = true;
+        arpeggioMenu = true;
+        scaleMenu = false;
+      case "Scale":
+        keyMenu = true;
+        arpeggioMenu = false;
+        scaleMenu = true;
+    }
+  })
+
+  let keyMenu = true;
+  let arpeggioMenu = true;
+  let scaleMenu = true;
 
   const [selectOption, changeSelectOption] = useState("All Notes");
+  const [selectKey, changeSelectKey] = useState("Key");
+  const [selectArpeggioType, changeArpeggioOption] = useState("Type");
+  const [selectScaleType, changeScaleOption] = useState("Type");
   
 
   return (
