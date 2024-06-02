@@ -1,22 +1,28 @@
 import React, { useState, useContext } from 'react';
 import './Dropdown.css';
 import { MenuContext } from './App';
-import Titles from './utils/titles.js'
 
-function DropdownMenu({ menu }) {
-
-  const { options, selectArpeggioType, changeArpeggioOption, selectScaleType, changeScaleOption } = useContext(MenuContext);
+function DropdownMenu({ menu, menuType }) {
+  const { changeSelectOption, changeSelectKey, changeArpeggioOption, changeScaleOption } = useContext(MenuContext);
   const [selectedOption, changeSelection] = useState(menu.title);
 
   const changeSelectedItem = (item) => {
     changeSelection(item);
-    console.log(options);
-    for(let item in options){
-      for(let menu of Titles){
-        if(menu.content.includes(item)){
-
-        }
-      }
+    switch (menuType) {
+      case "selectOption":
+        changeSelectOption(item);
+        break;
+      case "keyOption":
+        changeSelectKey(item);
+        break;
+      case "Arpeggio":
+        changeArpeggioOption(item);
+        break;
+      case "Scale":
+        changeScaleOption(item);
+        break;
+      default:
+        break;
     }
   };
 
@@ -41,4 +47,3 @@ function DropdownMenu({ menu }) {
 }
 
 export default DropdownMenu;
-

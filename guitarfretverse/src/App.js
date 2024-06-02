@@ -6,12 +6,10 @@ import logo from './images/guitarfretverselogo.png';
 import { useState, useEffect, createContext } from 'react';
 
 export const MenuContext = createContext({
-  options: {
-    selectOption: null,
-    selectKey: null,
-    selectArpeggioType: null,
-    selectScaleType: null,
-  },
+  selectOption: null,
+  selectKey: null,
+  selectArpeggioType: null,
+  selectScaleType: null,
   changeSelectOption: () => {},
   changeSelectKey: () => {},
   changeArpeggioOption: () => {},
@@ -36,11 +34,11 @@ function App() {
         arpeggioMenu = false;
         scaleMenu = true;
     }
-  })
+  }, [MenuContext])
 
-  let keyMenu = true;
-  let arpeggioMenu = true;
-  let scaleMenu = true;
+  let keyMenu = false;
+  let arpeggioMenu = false;
+  let scaleMenu = false;
 
   const [selectOption, changeSelectOption] = useState("All Notes");
   const [selectKey, changeSelectKey] = useState("Key");
@@ -55,10 +53,10 @@ function App() {
           <img src={logo} className='logo'></img>
         </div>
         <div className='menuContainer'>
-          <DropdownMenu menu={Titles.selectMenu}></DropdownMenu>
-          {keyMenu ? <DropdownMenu menu={Titles.keyMenu}></DropdownMenu> : <div/>}
-          {arpeggioMenu ? <DropdownMenu menu={Titles.arpeggioMenu}></DropdownMenu> : <div/>}
-          {scaleMenu ? <DropdownMenu menu={Titles.scaleMenu}></DropdownMenu> : <div/>}
+          <DropdownMenu menu={Titles.selectMenu} menuType={"selectOption"}></DropdownMenu>
+          {(selectOption !== "All Notes") ? <DropdownMenu menu={Titles.keyMenu} menuType={"keyOption"}></DropdownMenu> : <div/>}
+          {arpeggioMenu ? <DropdownMenu menu={Titles.arpeggioMenu} menuType={"Arpeggio"}></DropdownMenu> : <div/>}
+          {scaleMenu ? <DropdownMenu menu={Titles.scaleMenu} menuType={"Scale"}></DropdownMenu> : <div/>}
         </div>
         <Guitar></Guitar>
       </div>
