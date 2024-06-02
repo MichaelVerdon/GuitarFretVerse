@@ -159,7 +159,6 @@ html {
   align-items: center;
   position: relative;
   border-right: 0.4rem dotted var(--fret-pin-color);
-  box-sizing: content-box;
 }
 
 .fretMarkersContainer {
