@@ -6,6 +6,10 @@
   --guitar-string-color: #696969;
 }
 
+html {
+  font-size: 1vw; /* Base font-size set relative to viewport width */
+}
+
 .App {
   display: flex;
   justify-content: center;
@@ -18,7 +22,7 @@
 }
 
 .guitar {
-  height: 30%;
+  height: 30vh; /* Height relative to viewport height */
   width: 100%;
   position: relative;
 }
@@ -48,12 +52,12 @@
 
 .string {
   width: 100%;
-  height: 3px;
+  height: 0.2rem; /* Using rem for relative sizing */
   background-color: var(--guitar-string-color);
   position: relative;
   z-index: 1;
-  margin-top: 0.9rem;
-  margin-bottom: 1.7rem;
+  margin-top: 0.9rem; /* Using rem for relative spacing */
+  margin-bottom: 1rem; /* Using rem for relative spacing */
 }
 
 .fret {
@@ -87,7 +91,7 @@
 
 .notesContainer {
   display: flex;
-  flex-direction: horizontal;
+  flex-direction: row;
   position: absolute;
   top: 0;
   left: 0;
@@ -96,7 +100,7 @@
   z-index: 1000;
 }
 
-.notesNutContainer{
+.notesNutContainer {
   width: 4%;
   height: 100%;
   display: flex;
@@ -106,7 +110,7 @@
 
 .notesNutContainer .noteDot {
   position: relative;
-  margin-bottom: 0.8rem;
+  margin-bottom: 0.4rem;
   z-index: 2000;
 }
 
@@ -124,7 +128,7 @@
 
 .notesFretContainer .noteDot {
   position: relative;
-  margin-bottom: 0.8rem;
+  margin-bottom: 0.4rem;
   z-index: 2000;
 }
 
