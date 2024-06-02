@@ -8,6 +8,8 @@ const Guitar = () => {
     const testPattern = GuitarData.pentatonicBinary;
     const allNotes = GuitarData.allGuitarNotes;
 
+    const fretNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+
     const preparePattern = () => {
 
     }
@@ -77,7 +79,14 @@ const Guitar = () => {
                     <div className='fretdot' id='fretdotdbl'></div>
                 </div>
             </div>
+            <div className='fretMarkersContainer'>
+                <div className='nutMarker'>0</div>
+                {fretNumbers.map((number, index) => (
+                    <div key={index} className='fretMarker'>{number.toString()}</div>
+                ))}
+            </div>
         </div>
+        
     )
 }
 
