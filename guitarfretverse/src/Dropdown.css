@@ -28,8 +28,9 @@
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
-    border-radius: 5px;
-    overflow: hidden;
+    border-radius: 3px;
+    overflow-y: auto;
+    max-height: 20rem;
 }
 
 .dropdown:hover .dropdown-content,
@@ -43,6 +44,7 @@
     text-decoration: none;
     display: block;
     transition: background-color 0.3s;
+    text-align: left;
 }
 
 .dropdownItem:hover {

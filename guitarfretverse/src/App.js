@@ -25,25 +25,7 @@ function App() {
     changeArpeggioOption(selectArpeggioType);
     changeScaleOption(selectScaleType);
     console.log(selectOption, selectKey, selectArpeggioType, selectScaleType);
-    switch(selectOption){
-      case "All Notes":
-        keyMenu = false;
-        arpeggioMenu = false;
-        scaleMenu = false;
-      case "Arpeggio":
-        keyMenu = true;
-        arpeggioMenu = true;
-        scaleMenu = false;
-      case "Scale":
-        keyMenu = true;
-        arpeggioMenu = false;
-        scaleMenu = true;
-    }
-  }, [MenuContext])
-
-  let keyMenu = false;
-  let arpeggioMenu = false;
-  let scaleMenu = false;
+  })
 
   const [selectOption, changeSelectOption] = useState("All Notes");
   const [selectKey, changeSelectKey] = useState("Key");
@@ -54,7 +36,6 @@ function App() {
     if(checkUpdateValid()){
       console.log("do stuff");
     }
-    
   }
 
   function checkUpdateValid(){
