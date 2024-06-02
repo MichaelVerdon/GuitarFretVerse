@@ -2,7 +2,7 @@ const Titles = {
 
     selectMenu: {
         title: "Select",
-        content: ["All Notes", "Scales", "Arpeggios"]
+        content: ["All Notes", "Scale", "Arpeggio"]
     },
 
     keyMenu: {

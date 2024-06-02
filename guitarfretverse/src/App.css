@@ -70,6 +70,7 @@ html {
   cursor: pointer;
   border-radius: 5px;
   transition: background-color 0.3s;
+  font-size: 1.5rem;
 }
 
 .applyButton:hover {
@@ -77,7 +78,7 @@ html {
 }
 
 .guitar {
-  height: 30vh;
+  height: 30%;
   width: 100%;
   position: relative;
   display: flex;
@@ -132,6 +133,7 @@ html {
 }
 
 #fret0 {
+  height: 100%;
   width: 4%;
   background-color: var(--gutiar-nut-color);
 }

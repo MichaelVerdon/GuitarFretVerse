@@ -8,12 +8,16 @@ class NoteGenerator{
         this.pattern = [];
     }
 
+    generate(){
+        this.selectPattern();
+    }
+
     selectPattern(){
         switch(this.option){
-            case "all_notes":
+            case "All Notes":
                 this.pattern = GuitarData.allNotesBinary;
-            case "scale":
-            case "arpeggio":
+            case "Scale":
+            case "Arpeggio":
             default:
                 this.pattern = GuitarData.allNotesBinary;
         }
