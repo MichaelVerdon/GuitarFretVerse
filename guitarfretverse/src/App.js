@@ -4,6 +4,8 @@ import DropdownMenu from './dropdown.jsx'
 import Titles from './utils/titles.js';
 import logo from './images/guitarfretverselogo.png';
 import { useState, useEffect, createContext } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const MenuContext = createContext({
   selectOption: null,
@@ -32,9 +34,14 @@ function App() {
   const [selectArpeggioType, changeArpeggioOption] = useState("Type");
   const [selectScaleType, changeScaleOption] = useState("Type");
 
+  const notify = () => toast("Please pick a valid combination!");
+
   function handleUpdateClick(){
     if(checkUpdateValid()){
       console.log("do stuff");
+    }
+    else{
+      notify();
     }
   }
 
@@ -59,6 +66,7 @@ function App() {
 
   return (
     <MenuContext.Provider value={{ selectOption, selectKey, selectArpeggioType, selectScaleType, changeSelectOption, changeSelectKey, changeArpeggioOption, changeScaleOption}}>
+      <ToastContainer></ToastContainer>
       <div className="App">
         <div className='appContainer'>
           <div className='logoContainer'>
