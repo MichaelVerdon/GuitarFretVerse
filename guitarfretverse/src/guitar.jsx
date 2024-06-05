@@ -12,28 +12,28 @@ const Guitar = () => {
 
     return(
         <div className="guitar">
-            <div className='notesContainer'>
-                {testPattern.map((item, index) => {
-                    if (index === 0) {
-                        return (
-                            <div key={index} className='notesNutContainer'>
-                                {allNotes[index].map((note, i) => (
-                                    <Note key={i} note={note} active={item[i]} />
-                                ))}
-                            </div>
-                        );
-                    } else {
-                        return (
-                            <div key={index} className='notesFretContainer'>
-                                {allNotes[index].map((note, i) => (
-                                    <Note key={i} note={note} active={item[i]} />
-                                ))}
-                            </div>
-                        );
-                    }
-                })}
-            </div>
             <div className='stringContainer'>
+                <div className='notesContainer'>
+                    {testPattern.map((item, index) => {
+                        if (index === 0) {
+                            return (
+                                <div key={index} className='notesNutContainer'>
+                                    {allNotes[index].map((note, i) => (
+                                        <Note key={i} note={note} active={item[i]} />
+                                    ))}
+                                </div>
+                            );
+                        } else {
+                            return (
+                                <div key={index} className='notesFretContainer'>
+                                    {allNotes[index].map((note, i) => (
+                                        <Note key={i} note={note} active={item[i]} />
+                                    ))}
+                                </div>
+                            );
+                        }
+                    })}
+                </div>
                 <div className='string' id='estring'></div>
                 <div className='string' id='astring'></div>
                 <div className='string' id='dstring'></div>

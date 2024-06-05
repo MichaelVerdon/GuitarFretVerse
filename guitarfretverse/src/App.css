@@ -102,10 +102,11 @@ html {
   flex-direction: column;
   align-items: center;
   text-align: center;
+  justify-content: space-between;
   position: absolute;
   top: 0;
   left: 0;
-  height: 100%;
+  height: 80%;
   width: 100%;
   z-index: 1;
 }
@@ -154,6 +155,7 @@ html {
   display: flex;
   flex-direction: row;
   position: absolute;
+  justify-content: space-between;
   top: 0;
   left: 0;
   height: 100%;
@@ -167,11 +169,11 @@ html {
   display: flex;
   align-items: center;
   flex-direction: column;
+  justify-content: space-between;
 }
 
 .notesNutContainer .noteDot {
   position: relative;
-  margin-bottom: 0.4rem;
   z-index: 2000;
 }
 
@@ -185,6 +187,7 @@ html {
   display: flex;
   align-items: center;
   flex-direction: column;
+  justify-content: space-between;
 }
 
 .notesFretContainer .noteDot {
