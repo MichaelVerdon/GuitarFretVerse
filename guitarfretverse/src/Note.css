@@ -71,3 +71,13 @@
 #d { background-color: var(--d-note); }
 #dsharp { background-color: var(--dsharp-note); }
 
+@media screen and (max-width: 800px){
+  .noteDot{
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+
+  :root{
+    font-size: 0.45rem;
+  }
+}
