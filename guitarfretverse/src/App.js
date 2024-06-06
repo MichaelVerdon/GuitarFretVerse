@@ -6,6 +6,7 @@ import logo from './images/guitarfretverselogo.png';
 import { useState, useEffect, createContext } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import NoteGenerator from './utils/noteGenerator.js';
 
 export const MenuContext = createContext({
   selectOption: null,
@@ -21,6 +22,14 @@ export const MenuContext = createContext({
 
 function App() {
 
+  const [genKey, changeGenKey] = useState("A");
+  const [genSelect, changeGenSelect] = useState("All Notes");
+  const [genType, changeGenType] = useState("Dorian");
+
+  const generator = new NoteGenerator(genKey, genSelect, genType);
+  generator.generate();
+  let pattern = generator.getPattern();
+
   useEffect(() => {
     changeSelectOption(selectOption);
     changeSelectKey(selectKey);
@@ -34,11 +43,24 @@ function App() {
   const [selectArpeggioType, changeArpeggioOption] = useState("Type");
   const [selectScaleType, changeScaleOption] = useState("Type");
 
+
   const notify = () => toast("Please pick a valid combination!");
 
   function handleUpdateClick(){
     if(checkUpdateValid()){
       console.log("do stuff");
+      changeGenKey(selectKey);
+      changeGenSelect(selectOption);
+      switch(selectOption){
+        case "Scale":
+          changeGenType(selectScaleType);
+          break;
+        case "Arepggio":
+          changeGenType(selectArpeggioType);
+          break;
+        default:
+          changeGenType(selectScaleType);
+      }
     }
     else{
       notify();
@@ -79,7 +101,7 @@ function App() {
             {(selectOption === "Scale") ? <DropdownMenu menu={Titles.scaleMenu} menuType={"Scale"}></DropdownMenu> : <div/>}
             <button className='applyButton' onClick={handleUpdateClick}>Update Fretboard</button>
           </div>
-          <Guitar></Guitar>
+          <Guitar pattern={pattern}></Guitar>
         </div>
       </div>
     </MenuContext.Provider>

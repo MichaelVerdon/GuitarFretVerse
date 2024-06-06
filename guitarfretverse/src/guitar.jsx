@@ -3,7 +3,7 @@ import './App.css';
 import Note from './note.jsx';
 import GuitarData from './utils/guitarData.js';
 
-const Guitar = () => {
+const Guitar = ({pattern}) => {
 
     const testPattern = GuitarData.pentatonicBinary;
     const allNotes = GuitarData.allGuitarNotes;
@@ -14,7 +14,7 @@ const Guitar = () => {
         <div className="guitar">
             <div className='stringContainer'>
                 <div className='notesContainer'>
-                    {testPattern.map((item, index) => {
+                    {pattern.map((item, index) => {
                         if (index === 0) {
                             return (
                                 <div key={index} className='notesNutContainer'>
