@@ -7,7 +7,7 @@ frontend:
         - npm install
         - npm run build
   artifacts:
-    baseDirectory: portfolio/build
+    baseDirectory: guitarfretverse/build
     files:
       - '**/*'
   cache:
