@@ -1,0 +1,15 @@
+version: 2.1
+frontend:
+  phases:
+    build:
+      commands:
+        - cd guitarfretverse
+        - npm install
+        - npm run build
+  artifacts:
+    baseDirectory: portfolio/build
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - node_modules/**/*
