@@ -48,7 +48,7 @@ function App() {
 
   function handleUpdateClick(){
     if(checkUpdateValid()){
-      console.log("do stuff");
+      console.log(selectKey, selectOption, selectScaleType, selectArpeggioType);
       changeGenKey(selectKey);
       changeGenSelect(selectOption);
       switch(selectOption){

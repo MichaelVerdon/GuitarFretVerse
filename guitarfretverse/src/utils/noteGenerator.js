@@ -67,9 +67,6 @@ class NoteGenerator{
             case "Melodic Minor":
                 this.pattern = GuitarData.melodicMinorBinary;
                 break;
-            default:
-                this.pattern = GuitarData.allNotesBinary;
-                break;
         }
     }
 
@@ -81,6 +78,15 @@ class NoteGenerator{
             case "Minor":
                 this.pattern = GuitarData.minorArpBinary;
                 break;
+            case "Maj7":
+                this.pattern = GuitarData.major7ArpBinary;
+                break;
+            case "Min7":
+                this.pattern = GuitarData.minor7ArpBinary;
+                break;
+            case "Diminished":
+                this.pattern = GuitarData.diminishedBinary;
+                break;
             default:
                 this.pattern = GuitarData.allNotesBinary;
                 break;
@@ -88,7 +94,6 @@ class NoteGenerator{
     }
 
     shiftKey(keyIndex) {
-        console.log("Key Index = " + keyIndex);
         let tempPattern = this.deepCloneArray(this.pattern);
         tempPattern.pop();
         // Shift values up by key offset with wrap-around
