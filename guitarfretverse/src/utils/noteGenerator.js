@@ -58,11 +58,33 @@ class NoteGenerator{
                 this.pattern = GuitarData.minorPentatonicBinary;
                 this.shiftKey(7);
                 break;
+            case "Blues Minor Pentatonic":
+                this.pattern = GuitarData.bluesMinorBinary;
+                break;
+            case "Harmonic Minor":
+                this.pattern = GuitarData.harmonicMinorBinary;
+                break;
+            case "Melodic Minor":
+                this.pattern = GuitarData.melodicMinorBinary;
+                break;
+            default:
+                this.pattern = GuitarData.allNotesBinary;
+                break;
         }
     }
 
     getArpeggio(){
-
+        switch(this.kind){
+            case "Major":
+                this.pattern = GuitarData.majorArpBinary;
+                break;
+            case "Minor":
+                this.pattern = GuitarData.minorArpBinary;
+                break;
+            default:
+                this.pattern = GuitarData.allNotesBinary;
+                break;
+        }
     }
 
     shiftKey(keyIndex) {

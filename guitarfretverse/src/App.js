@@ -55,7 +55,7 @@ function App() {
         case "Scale":
           changeGenType(selectScaleType);
           break;
-        case "Arepggio":
+        case "Arpeggio":
           changeGenType(selectArpeggioType);
           break;
         default:
