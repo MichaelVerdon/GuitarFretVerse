@@ -7,6 +7,7 @@
 
 .dropbtn {
     background-color: #000281;
+    box-shadow: 0.5rem 0.5rem #000000;
     color: white;
     padding: 16px;
     font-size: 16px;

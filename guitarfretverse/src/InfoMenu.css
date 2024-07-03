@@ -1,0 +1,32 @@
+
+.infoPanel{
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+background-color: #000281;
+color: #ffffff;
+padding: 1rem;
+border-radius: 2rem;
+position: fixed;
+bottom: 0;
+width: 40vw;
+height: 15vh;
+margin-bottom: 2rem;
+box-shadow: 0.5rem 0.5rem #000000;
+}
+
+.infoContents{
+overflow-y: scroll;
+}
+
+.infoTitle{
+font-size: 1.5rem;
+font-weight: bold;
+padding-bottom: 0.5rem;
+}
+
+.infoIntervals{
+font-size: 1.2rem;
+padding-bottom: 0.5rem;
+}

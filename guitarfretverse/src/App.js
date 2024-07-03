@@ -7,6 +7,7 @@ import { useState, useEffect, createContext } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import NoteGenerator from './utils/noteGenerator.js';
+import InfoPanel from './info.jsx';
 
 export const MenuContext = createContext({
   selectOption: null,
@@ -22,9 +23,9 @@ export const MenuContext = createContext({
 
 function App() {
 
-  const [genKey, changeGenKey] = useState("A");
+  const [genKey, changeGenKey] = useState(null);
   const [genSelect, changeGenSelect] = useState("All Notes");
-  const [genType, changeGenType] = useState("Dorian");
+  const [genType, changeGenType] = useState(null);
 
   const generator = new NoteGenerator(genKey, genSelect, genType);
   generator.generate();
@@ -103,6 +104,7 @@ function App() {
           </div>
           <Guitar pattern={pattern}></Guitar>
         </div>
+        <InfoPanel></InfoPanel>
       </div>
     </MenuContext.Provider>
   );
