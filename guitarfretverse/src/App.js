@@ -7,6 +7,7 @@ import { useState, useEffect, createContext } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import NoteGenerator from './utils/noteGenerator.js';
+import InfoGenerator from './utils/infoGenerator.js';
 import InfoPanel from './info.jsx';
 
 export const MenuContext = createContext({
@@ -27,9 +28,15 @@ function App() {
   const [genSelect, changeGenSelect] = useState("All Notes");
   const [genType, changeGenType] = useState(null);
 
+  // Make pattern to populate interactive fretboard
   const generator = new NoteGenerator(genKey, genSelect, genType);
   generator.generate();
   let pattern = generator.getPattern();
+
+  // Generate Info about selected option
+  const infoGenerator = new InfoGenerator(genKey, genSelect, genType);
+  infoGenerator.generate();
+  let info = infoGenerator.getInfo();
 
   useEffect(() => {
     changeSelectOption(selectOption);
@@ -104,7 +111,7 @@ function App() {
           </div>
           <Guitar pattern={pattern}></Guitar>
         </div>
-        <InfoPanel></InfoPanel>
+        <InfoPanel infoArray={info}></InfoPanel>
       </div>
     </MenuContext.Provider>
   );

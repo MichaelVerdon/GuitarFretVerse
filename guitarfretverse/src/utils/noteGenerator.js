@@ -123,7 +123,9 @@ class NoteGenerator{
         return arr.map(item => Array.isArray(item) ? this.deepCloneArray(item) : item);
     }
 
-    getPattern(){return this.pattern}
+    getPattern(){
+        return this.pattern
+    }
 
 
 }
