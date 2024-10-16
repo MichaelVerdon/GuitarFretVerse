@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import Note from './note/note.jsx';
+import Note from './components/note/note.jsx';
 import GuitarData from './utils/guitarData.js';
 
 const Guitar = ({ pattern }) => {
