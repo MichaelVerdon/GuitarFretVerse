@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import './Dropdown.css';
-import { MenuContext } from './App';
+import { MenuContext } from '../../App';
 
 function DropdownMenu({ menu, menuType }) {
   const { changeSelectOption, changeSelectKey, changeArpeggioOption, changeScaleOption } = useContext(MenuContext);

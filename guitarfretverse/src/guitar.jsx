@@ -1,16 +1,16 @@
 import React from 'react';
 import './App.css';
-import Note from './note.jsx';
+import Note from './note/note.jsx';
 import GuitarData from './utils/guitarData.js';
 
-const Guitar = ({pattern}) => {
+const Guitar = ({ pattern }) => {
 
     const testPattern = GuitarData.pentatonicBinary;
     const allNotes = GuitarData.allGuitarNotes;
 
     const fretNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
-    return(
+    return (
         <div className="guitar">
             <div className='stringContainer'>
                 <div className='notesContainer'>
@@ -82,7 +82,7 @@ const Guitar = ({pattern}) => {
                 ))}
             </div>
         </div>
-        
+
     )
 }
 
