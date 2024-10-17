@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import NoteGenerator from './utils/noteGenerator.js';
 import InfoGenerator from './utils/infoGenerator.js';
 import InfoPanel from './components/info/info.jsx';
-import NavBar from './nav/nav.jsx';
+import NavBar from './components/nav/nav.jsx';
 
 export const MenuContext = createContext({
   selectOption: null,

@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import NoteGenerator from './utils/noteGenerator.js';
 import InfoGenerator from './utils/infoGenerator.js';
 import InfoPanel from './components/info/info.jsx';
-import NavBar from './nav/nav.jsx';
+import NavBar from './components/nav/nav.jsx';
 
 export const MenuContext = createContext({
     selectOption: null,
@@ -28,14 +28,15 @@ function Licks() {
     const [genKey, changeGenKey] = useState(null);
     const [genSelect, changeGenSelect] = useState("All Notes");
     const [genType, changeGenType] = useState(null);
+    const [genGenre, changeGenGenre] = useState(null);
 
     // Make pattern to populate interactive fretboard
-    const generator = new NoteGenerator(genKey, genSelect, genType);
+    const generator = new NoteGenerator(genKey, genSelect, genType, genGenre);
     generator.generate();
     let pattern = generator.getPattern();
 
     // Generate Info about selected option
-    const infoGenerator = new InfoGenerator(genKey, genSelect, genType);
+    const infoGenerator = new InfoGenerator(genKey, genSelect, genType, genGenre);
     infoGenerator.generate();
     let info = infoGenerator.getInfo();
 
@@ -44,22 +45,25 @@ function Licks() {
         changeSelectKey(selectKey);
         changeArpeggioOption(selectArpeggioType);
         changeScaleOption(selectScaleType);
-        console.log(selectOption, selectKey, selectArpeggioType, selectScaleType);
+        changeGenreOption(selectGenreType);
+        console.log(selectOption, selectKey, selectArpeggioType, selectScaleType, selectGenreType);
     })
 
     const [selectOption, changeSelectOption] = useState("All Notes");
     const [selectKey, changeSelectKey] = useState("Key");
     const [selectArpeggioType, changeArpeggioOption] = useState("Type");
     const [selectScaleType, changeScaleOption] = useState("Type");
+    const [selectGenreType, changeGenreOption] = useState("Genre");
 
 
     const notify = () => toast("Please pick a valid combination!");
 
     function handleUpdateClick() {
         if (checkUpdateValid()) {
-            console.log(selectKey, selectOption, selectScaleType, selectArpeggioType);
+            console.log(selectKey, selectOption, selectScaleType, selectArpeggioType, selectGenreType);
             changeGenKey(selectKey);
             changeGenSelect(selectOption);
+            changeGenGenre(selectGenre);
             switch (selectOption) {
                 case "Scale":
                     changeGenType(selectScaleType);

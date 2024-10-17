@@ -1,7 +1,7 @@
 import GuitarInfo from "./guitarInfo";
 
-class InfoGenerator{
-    constructor(key, option, kind){
+class InfoGenerator {
+    constructor(key, option, kind) {
         this.key = key;
         this.option = option;
         this.kind = kind;
@@ -13,41 +13,41 @@ class InfoGenerator{
         this.final = [];
     }
 
-    generate(){
+    generate() {
         this.createTitle();
         this.createInfo();
         this.final = [this.title, this.intervals, this.info];
     }
 
-    getInfo(){
+    getInfo() {
         return this.final;
     }
 
-    createTitle(){
-        if(this.option !== "All Notes"){
+    createTitle() {
+        if (this.option !== "All Notes") {
             this.title = `${this.key} ${this.kind} ${this.option}`;
         }
-        else{
+        else {
             this.title = 'Standard Tuning';
         }
-        
+
     }
 
-    createInfo(){
-        if(this.option === "Scale"){
+    createInfo() {
+        if (this.option === "Scale") {
             this.searchScale();
         }
-        else if(this.option === "Arpeggio"){
+        else if (this.option === "Arpeggio") {
             this.searchArpeggio();
         }
-        else{
+        else {
             this.intervals = GuitarInfo.strings;
             this.info = GuitarInfo.tuningInfo;
         }
     }
 
-    searchScale(){
-        switch(this.kind){
+    searchScale() {
+        switch (this.kind) {
             case "Major":
                 this.intervals = GuitarInfo.majorIntervals;
                 this.info = GuitarInfo.majorInfo;
@@ -103,8 +103,8 @@ class InfoGenerator{
         }
     }
 
-    searchArpeggio(){
-        switch(this.kind){
+    searchArpeggio() {
+        switch (this.kind) {
             case "Major":
                 this.intervals = GuitarInfo.majorArpeggioIntervals;
                 this.info = GuitarInfo.majorArpeggioInfo;
@@ -130,6 +130,23 @@ class InfoGenerator{
                 this.info = GuitarInfo.tuningInfo;
                 break;
         }
+    }
+
+    switchGenres() {
+        switch (this.kind) {
+            case "Blues":
+                break
+        }
+    }
+
+
+    switchLicks() {
+        switch (this.kind) {
+            case "B.B. King Box":
+                this.intervals = GuitarInfo.bbKingBoxIntervals;
+                this.info = GuitarInfo.bbKingBoxInfo;
+        }
+
     }
 
 }
