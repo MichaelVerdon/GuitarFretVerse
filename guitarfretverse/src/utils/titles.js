@@ -18,6 +18,11 @@ const Titles = {
     scaleMenu: {
         title: "Type",
         content: ["Major", "Dorian", "Phyrgian", "Lydian", "Mixolydian", "Minor", "Locrian", "Minor Pentatonic", "Major Pentatonic", "Blues Minor Pentatonic", "Harmonic Minor", "Melodic Minor"]
+    },
+
+    genreMenu: {
+        title: "Genre",
+        content: ["Blues", "Jazz", "Rock"]
     }
 
 }

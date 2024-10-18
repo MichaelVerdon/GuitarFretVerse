@@ -58,9 +58,11 @@ const GuitarInfo = {
     diminishedArpeggioIntervals: "1, b3, b5",
     diminishedArpeggioInfo: "The diminished arpeggio consists of the root, minor third, and diminished fifth. It creates a tense, unstable, and dissonant sound, often used to create suspense and resolve in classical, jazz, and metal music.",
 
-    // Licks witin a Genre
+    // Genres 
+    bluesIntervals: "1, ♭3, 4, 5, ♭7",
+    bluesInfo: "Blues is a genre of music rooted in African American history, emerging in the Deep South of the United States in the late 19th century. Known for its emotive, expressive sound, blues typically uses a 12-bar form, incorporating dominant 7th chords and pentatonic scales. Characterized by its melancholic melodies, call-and-response patterns, and soulful improvisation, blues has influenced numerous other genres, including rock, jazz, and R&B.",
 
-    // Blues
+    // Licks witin a Genre
     bbKingBoxIntervals: "1, b3, 4, 5, b7",
     bbKingBoxInfo: "The B.B. King box is a specific blues guitar position often used by the legendary blues guitarist B.B. King. It incorporates the root, minor third, perfect fourth, perfect fifth, and minor seventh. This shape is known for its smooth, expressive bends and emotional vibrato, embodying the essence of King's iconic sound, making it a staple in blues guitar phrasing."
 };

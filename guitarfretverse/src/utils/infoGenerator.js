@@ -40,6 +40,10 @@ class InfoGenerator {
         else if (this.option === "Arpeggio") {
             this.searchArpeggio();
         }
+
+        else if (this.option === "Genre") {
+            this.searchGenre();
+        }
         else {
             this.intervals = GuitarInfo.strings;
             this.info = GuitarInfo.tuningInfo;
@@ -132,19 +136,21 @@ class InfoGenerator {
         }
     }
 
-    switchGenres() {
+    searchGenre() {
         switch (this.kind) {
             case "Blues":
-                break
+                this.intervals = GuitarInfo.bluesIntervals;
+                this.info = GuitarInfo.bluesInfo;
+                break;
         }
     }
 
-
-    switchLicks() {
+    searchLick() {
         switch (this.kind) {
             case "B.B. King Box":
                 this.intervals = GuitarInfo.bbKingBoxIntervals;
                 this.info = GuitarInfo.bbKingBoxInfo;
+                break;
         }
 
     }

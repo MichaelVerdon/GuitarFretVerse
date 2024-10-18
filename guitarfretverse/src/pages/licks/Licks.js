@@ -16,10 +16,12 @@ export const MenuContext = createContext({
     selectKey: null,
     selectArpeggioType: null,
     selectScaleType: null,
+    selectGenreType: null,
     changeSelectOption: () => { },
     changeSelectKey: () => { },
     changeArpeggioOption: () => { },
-    changeScaleOption: () => { }
+    changeScaleOption: () => { },
+    changeGenreOption: () => { }
 });
 
 
@@ -63,13 +65,16 @@ function Licks() {
             console.log(selectKey, selectOption, selectScaleType, selectArpeggioType, selectGenreType);
             changeGenKey(selectKey);
             changeGenSelect(selectOption);
-            changeGenGenre(selectGenre);
+            // changeGenGenre(selectGenreType);
             switch (selectOption) {
                 case "Scale":
                     changeGenType(selectScaleType);
                     break;
                 case "Arpeggio":
                     changeGenType(selectArpeggioType);
+                    break;
+                case "Genre":
+                    changeGenGenre(selectGenreType);
                     break;
                 default:
                     changeGenType(selectScaleType);
@@ -92,6 +97,9 @@ function Licks() {
                 else if (selectScaleType !== "Type" && selectOption === "Scale") {
                     return true;
                 }
+                else if (selectGenreType !== "Type" && selectOption === "Genre") {
+                    return true;
+                }
             }
         }
         console.log("not a valid combo");
@@ -100,7 +108,7 @@ function Licks() {
     }
 
     return (
-        <MenuContext.Provider value={{ selectOption, selectKey, selectArpeggioType, selectScaleType, changeSelectOption, changeSelectKey, changeArpeggioOption, changeScaleOption }}>
+        <MenuContext.Provider value={{ selectOption, selectKey, selectArpeggioType, selectScaleType, selectGenreType, changeSelectOption, changeSelectKey, changeArpeggioOption, changeScaleOption, changeGenreOption }}>
             <ToastContainer></ToastContainer>
             <div className="Licks">
                 <div className='licksContainer'>
@@ -112,6 +120,7 @@ function Licks() {
                         {(selectOption !== "All Notes") ? <DropdownMenu menu={Titles.keyMenu} menuType={"Key"}></DropdownMenu> : <div />}
                         {(selectOption === "Arpeggio") ? <DropdownMenu menu={Titles.arpeggioMenu} menuType={"Arpeggio"}></DropdownMenu> : <div />}
                         {(selectOption === "Scale") ? <DropdownMenu menu={Titles.scaleMenu} menuType={"Scale"}></DropdownMenu> : <div />}
+                        {(selectOption === "Genre") ? <DropdownMenu menu={Titles.genreMenu} menuType={"Genre"} ></DropdownMenu> : <div />}
                         <button className='applyButton' onClick={handleUpdateClick}>Update Fretboard</button>
                     </div>
                     <NavBar />
@@ -123,4 +132,4 @@ function Licks() {
     );
 }
 
-export default App;
+export default Licks;
