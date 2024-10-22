@@ -40,7 +40,6 @@ class InfoGenerator {
         else if (this.option === "Arpeggio") {
             this.searchArpeggio();
         }
-
         else if (this.option === "Genre") {
             this.searchGenre();
         }

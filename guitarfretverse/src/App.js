@@ -4,12 +4,14 @@ import DropdownMenu from './components/dropdown/dropdown.jsx';
 import Titles from './utils/titles.js';
 import logo from './images/guitarfretverselogo.png';
 import { useState, useEffect, createContext } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import NoteGenerator from './utils/noteGenerator.js';
 import InfoGenerator from './utils/infoGenerator.js';
 import InfoPanel from './components/info/info.jsx';
 import NavBar from './components/nav/nav.jsx';
+import Licks from './pages/licks/Licks.js';
 
 export const MenuContext = createContext({
   selectOption: null,
@@ -98,24 +100,32 @@ function App() {
   return (
     <MenuContext.Provider value={{ selectOption, selectKey, selectArpeggioType, selectScaleType, changeSelectOption, changeSelectKey, changeArpeggioOption, changeScaleOption }}>
       <ToastContainer></ToastContainer>
-      <div className="App">
-        <div className='appContainer'>
-          <div className='logoContainer'>
-            <img src={logo} className='logo'></img>
+      <Router>
+        <div className="App">
+          <div className='appContainer'>
+            <div className='logoContainer'>
+              <img src={logo} className='logo'></img>
+            </div>
+            <div className='menuContainer'>
+              <DropdownMenu menu={Titles.selectMenu} menuType={"selectOption"}></DropdownMenu>
+              {(selectOption !== "All Notes") ? <DropdownMenu menu={Titles.keyMenu} menuType={"Key"}></DropdownMenu> : <div />}
+              {(selectOption === "Arpeggio") ? <DropdownMenu menu={Titles.arpeggioMenu} menuType={"Arpeggio"}></DropdownMenu> : <div />}
+              {(selectOption === "Scale") ? <DropdownMenu menu={Titles.scaleMenu} menuType={"Scale"}></DropdownMenu> : <div />}
+              <button className='applyButton' onClick={handleUpdateClick}>Update Fretboard</button>
+            </div>
+            <NavBar />
+            <Guitar pattern={pattern}></Guitar>
+
+            {/* <Routes>
+              <Route path="/" element={<App />} />
+              <Route path="/licks" element={<Licks />} />
+            </Routes> */}
+
           </div>
-          <div className='menuContainer'>
-            <DropdownMenu menu={Titles.selectMenu} menuType={"selectOption"}></DropdownMenu>
-            {(selectOption !== "All Notes") ? <DropdownMenu menu={Titles.keyMenu} menuType={"Key"}></DropdownMenu> : <div />}
-            {(selectOption === "Arpeggio") ? <DropdownMenu menu={Titles.arpeggioMenu} menuType={"Arpeggio"}></DropdownMenu> : <div />}
-            {(selectOption === "Scale") ? <DropdownMenu menu={Titles.scaleMenu} menuType={"Scale"}></DropdownMenu> : <div />}
-            <button className='applyButton' onClick={handleUpdateClick}>Update Fretboard</button>
-          </div>
-          <NavBar />
-          <Guitar pattern={pattern}></Guitar>
+          <InfoPanel infoArray={info}></InfoPanel>
         </div>
-        <InfoPanel infoArray={info}></InfoPanel>
-      </div>
-    </MenuContext.Provider>
+      </Router>
+    </MenuContext.Provider >
   );
 }
 

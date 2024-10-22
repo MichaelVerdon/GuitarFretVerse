@@ -18,7 +18,7 @@ html {
     text-align: center;
     flex-direction: column;
     height: 100vh;
-    background-image: url("./images/brickwall_bg.jpg");
+    background-image: url("../../images/brickwall_bg.jpg");
     background-size: cover;
     background-color: #f0f0f0;
 }
