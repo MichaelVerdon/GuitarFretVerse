@@ -1,119 +1,113 @@
 import './App.css';
-import Guitar from './guitar';
-import DropdownMenu from './dropdown.jsx'
-import Titles from './utils/titles.js';
+import React, { useState, useEffect, useCallback } from 'react';
 import logo from './images/guitarfretverselogo.png';
-import { useState, useEffect, createContext } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import NoteGenerator from './utils/noteGenerator.js';
-import InfoGenerator from './utils/infoGenerator.js';
-import InfoPanel from './info.jsx';
+import Explorer from './components/Explorer';
+import ChordFinder from './components/ChordFinder';
+import ScaleFinder from './components/ScaleFinder';
+import CircleOfFifths from './components/CircleOfFifths';
+import Progressions from './components/Progressions';
+import Quiz from './components/Quiz';
+import { loadInitialState, persistState, tabFromQuery, sanitize } from './utils/state';
+import { describePattern, getTuning } from './utils/theory';
 
-export const MenuContext = createContext({
-  selectOption: null,
-  selectKey: null,
-  selectArpeggioType: null,
-  selectScaleType: null,
-  changeSelectOption: () => {},
-  changeSelectKey: () => {},
-  changeArpeggioOption: () => {},
-  changeScaleOption: () => {}
-});
+const TAB_LABELS = [
+  ['explore', 'Explorer'],
+  ['chords', 'Chords'],
+  ['scales', 'Scale finder'],
+  ['circle', 'Circle of fifths'],
+  ['progressions', 'Progressions'],
+  ['quiz', 'Quiz'],
+];
 
+// Fields that change which notes are shown; changing them resets the position box.
+const PATTERN_KEYS = ['mode', 'rootPc', 'scaleId', 'arpId', 'tuningId', 'capo', 'frets'];
 
 function App() {
+  const [state, setState] = useState(loadInitialState);
+  const [progSeed, setProgSeed] = useState(null);
+  const [tab, setTab] = useState(() => (typeof window !== 'undefined' ? tabFromQuery(window.location.search) : 'explore'));
 
-  const [genKey, changeGenKey] = useState(null);
-  const [genSelect, changeGenSelect] = useState("All Notes");
-  const [genType, changeGenType] = useState(null);
+  const update = useCallback((patch) => {
+    setState((prev) => {
+      const next = { ...prev, ...patch };
+      const patternChanged = PATTERN_KEYS.some((k) => k in patch && patch[k] !== prev[k]);
+      if (patternChanged && !('position' in patch)) next.position = 0;
+      return sanitize(next);
+    });
+  }, []);
 
-  // Make pattern to populate interactive fretboard
-  const generator = new NoteGenerator(genKey, genSelect, genType);
-  generator.generate();
-  let pattern = generator.getPattern();
+  // Open something in the Explorer from another tab
+  const openInExplorer = useCallback(
+    (patch) => {
+      update({ position: 0, ...patch });
+      setTab('explore');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    },
+    [update]
+  );
 
-  // Generate Info about selected option
-  const infoGenerator = new InfoGenerator(genKey, genSelect, genType);
-  infoGenerator.generate();
-  let info = infoGenerator.getInfo();
+  // Jump to another tab, optionally seeding the progressions key
+  const goTo = useCallback((target, seed) => {
+    if (seed) setProgSeed({ ...seed, nonce: Date.now() });
+    setTab(target);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
 
   useEffect(() => {
-    changeSelectOption(selectOption);
-    changeSelectKey(selectKey);
-    changeArpeggioOption(selectArpeggioType);
-    changeScaleOption(selectScaleType);
-    console.log(selectOption, selectKey, selectArpeggioType, selectScaleType);
-  })
-
-  const [selectOption, changeSelectOption] = useState("All Notes");
-  const [selectKey, changeSelectKey] = useState("Key");
-  const [selectArpeggioType, changeArpeggioOption] = useState("Type");
-  const [selectScaleType, changeScaleOption] = useState("Type");
-
-
-  const notify = () => toast("Please pick a valid combination!");
-
-  function handleUpdateClick(){
-    if(checkUpdateValid()){
-      console.log(selectKey, selectOption, selectScaleType, selectArpeggioType);
-      changeGenKey(selectKey);
-      changeGenSelect(selectOption);
-      switch(selectOption){
-        case "Scale":
-          changeGenType(selectScaleType);
-          break;
-        case "Arpeggio":
-          changeGenType(selectArpeggioType);
-          break;
-        default:
-          changeGenType(selectScaleType);
+    persistState(state, tab);
+    const info = describePattern(state);
+    const tuning = getTuning(state.tuningId);
+    const base = 'GuitarFretVerse';
+    if (tab === 'explore') {
+      document.title =
+        state.mode === 'all'
+          ? `Guitar fretboard notes | ${base}`
+          : `${info.title} on guitar | ${base}`;
+      const meta = document.querySelector('meta[name="description"]');
+      if (meta) {
+        meta.setAttribute(
+          'content',
+          state.mode === 'all'
+            ? 'Interactive guitar fretboard with every note, scales, arpeggios, chords and ear-training tools.'
+            : `${info.title} on the guitar fretboard (${tuning.name.split(' (')[0]} tuning): notes ${info.notes.join(' ')}, intervals ${info.formula.join(' ')}, positions and playback.`
+        );
       }
+    } else {
+      document.title = `${TAB_LABELS.find((t) => t[0] === tab)[1]} | ${base}`;
     }
-    else{
-      notify();
-    }
-  }
-
-  function checkUpdateValid(){
-    if(Titles.selectMenu.content.includes(selectOption)){
-      if(selectOption === "All Notes"){
-        return true;
-      }
-      else if(Titles.keyMenu.content.includes(selectKey)){
-        if(selectArpeggioType !== "Type" && selectOption === "Arpeggio"){
-          return true;
-        }
-        else if(selectScaleType !== "Type" && selectOption === "Scale"){
-          return true;
-        }
-      }
-    }
-    console.log("not a valid combo");
-    return false;
-    
-  }
+  }, [state, tab]);
 
   return (
-    <MenuContext.Provider value={{ selectOption, selectKey, selectArpeggioType, selectScaleType, changeSelectOption, changeSelectKey, changeArpeggioOption, changeScaleOption}}>
-      <ToastContainer></ToastContainer>
-      <div className="App">
-        <div className='appContainer'>
-          <div className='logoContainer'>
-            <img src={logo} className='logo'></img>
-          </div>
-          <div className='menuContainer'>
-            <DropdownMenu menu={Titles.selectMenu} menuType={"selectOption"}></DropdownMenu>
-            {(selectOption !== "All Notes") ? <DropdownMenu menu={Titles.keyMenu} menuType={"Key"}></DropdownMenu> : <div/>}
-            {(selectOption === "Arpeggio") ? <DropdownMenu menu={Titles.arpeggioMenu} menuType={"Arpeggio"}></DropdownMenu> : <div/>}
-            {(selectOption === "Scale") ? <DropdownMenu menu={Titles.scaleMenu} menuType={"Scale"}></DropdownMenu> : <div/>}
-            <button className='applyButton' onClick={handleUpdateClick}>Update Fretboard</button>
-          </div>
-          <Guitar pattern={pattern}></Guitar>
-        </div>
-        <InfoPanel infoArray={info}></InfoPanel>
-      </div>
-    </MenuContext.Provider>
+    <div className="App">
+      <header className="site-header">
+        <img src={logo} className="logo" alt="GuitarFretVerse" />
+        <nav className="tabs" role="tablist" aria-label="Tools">
+          {TAB_LABELS.map(([id, label]) => (
+            <button
+              key={id}
+              type="button"
+              role="tab"
+              id={`tab-${id}`}
+              aria-selected={tab === id}
+              aria-controls="main-panel"
+              className={tab === id ? 'active' : ''}
+              onClick={() => setTab(id)}
+            >
+              {label}
+            </button>
+          ))}
+        </nav>
+      </header>
+      <main id="main-panel" role="tabpanel" aria-labelledby={`tab-${tab}`}>
+        {tab === 'explore' && <Explorer state={state} update={update} setState={setState} />}
+        {tab === 'chords' && <ChordFinder onOpen={openInExplorer} />}
+        {tab === 'scales' && <ScaleFinder onOpen={openInExplorer} />}
+        {tab === 'circle' && <CircleOfFifths onOpen={openInExplorer} onGoTo={goTo} />}
+        {tab === 'progressions' && <Progressions seed={progSeed} onOpen={openInExplorer} />}
+        {tab === 'quiz' && <Quiz />}
+      </main>
+      <footer className="site-footer">GuitarFretVerse · all patterns are calculated from music theory, so they work in any tuning.</footer>
+    </div>
   );
 }
 
